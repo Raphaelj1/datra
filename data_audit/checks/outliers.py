@@ -29,7 +29,7 @@ def outliers(df: pd.DataFrame):
             "upper_bound": float(upper_bound),
             "outlier_count": int(outliers_mask.sum()),
             "outlier_ratio": float(round(outliers_mask.mean(), 4)),
-            "sample_outliers": outlier_values.head(5).tolist()
+            # "sample_outliers": outlier_values.head(5).tolist()
         }
 
     return results

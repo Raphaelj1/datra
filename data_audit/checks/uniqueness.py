@@ -11,7 +11,7 @@ def uniqueness(df: pd.DataFrame):
         "total_rows": total_rows,
         "duplicate_rows": int(duplicate_rows),
         "duplicate_ratio": float(round(duplicate_rows / total_rows, 4) if total_rows else 0),
-        "duplicate_sample": df[dup_mask].head(5).to_dict(orient="records")
+        # "duplicate_sample": df[dup_mask].head(5).to_dict(orient="records")
     }
 
     return result

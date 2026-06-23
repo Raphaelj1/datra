@@ -4,6 +4,7 @@ from data_audit.checks.completeness import completeness
 from data_audit.checks.uniqueness import uniqueness
 from data_audit.checks.plausibility import plausibility
 from data_audit.checks.outliers import outliers
+from data_audit.reports.score_calculator import calculate_score
 
 class DataAudit:
     def __init__(self, input_data):
@@ -55,3 +56,15 @@ class DataAudit:
         result = outliers(self.df)
         self.results["outliers"] = result
         return result
+    
+    
+    def run_all(self):
+        self.completeness()
+        self.uniqueness()
+        self.plausibility()
+        self.outliers()
+        return self.results
+    
+    
+    def score(self):
+        return self.run_all()

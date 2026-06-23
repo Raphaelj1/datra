@@ -30,6 +30,7 @@ def plausibility(df: pd.DataFrame):
             issues[col] = col_issues
 
     return {
+        "total_columns": len(df.columns),
         "columns_with_issues": len(issues),
         "issues": issues
     }
