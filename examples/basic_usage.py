@@ -11,3 +11,5 @@ audit = DataAudit(file_path)
 # print(audit.outliers())
 # print(audit.score())
 # print(audit.profile())
+
+print(audit.save_report(format="json"))

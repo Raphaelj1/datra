@@ -1,13 +1,4 @@
 def calculate_score(results: dict):
-    """
-    results = {
-        "completeness": {...},
-        "uniqueness": {...},
-        "plausibility": {...},
-        "outliers": {...}
-    }
-    """
-
     scores = {}
 
 

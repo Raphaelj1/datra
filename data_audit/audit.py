@@ -6,6 +6,7 @@ from data_audit.checks.plausibility import plausibility
 from data_audit.checks.outliers import outliers
 from data_audit.checks.profile import profile
 from data_audit.reports.score_calculator import calculate_score
+from data_audit.reports.report_builder import build_report, save_report
 
 class DataAudit:
     def __init__(self, input_data):
@@ -60,6 +61,7 @@ class DataAudit:
     
     
     def run_all(self):
+        self.profile()
         self.completeness()
         self.uniqueness()
         self.plausibility()
@@ -70,6 +72,7 @@ class DataAudit:
     def score(self):
         results = self.run_all()
         score = calculate_score(results)
+        self.results["score"] = score
         return score
     
     
@@ -77,3 +80,13 @@ class DataAudit:
         result = profile(self.df)
         self.results["profile"] = result
         return result
+    
+
+    def build_report(self, format="json"):
+        self.score()
+        return build_report(self.results, format=format)
+    
+    def save_report(self, path="reports", format="json"):
+        self.score()
+        report = build_report(self.results, format="json")
+        return save_report(report, path=path, format=format)
