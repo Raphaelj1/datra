@@ -3,6 +3,7 @@ from pathlib import Path
 from data_audit.checks.completeness import completeness
 from data_audit.checks.uniqueness import uniqueness
 from data_audit.checks.plausibility import plausibility
+from data_audit.checks.outliers import outliers
 
 class DataAudit:
     def __init__(self, input_data):
@@ -47,4 +48,10 @@ class DataAudit:
     def plausibility(self):
         result = plausibility(self.df)
         self.results["plausibility"] = result
+        return result
+    
+    
+    def outliers(self):
+        result = outliers(self.df)
+        self.results["outliers"] = result
         return result

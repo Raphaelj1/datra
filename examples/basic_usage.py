@@ -7,4 +7,5 @@ audit = DataAudit(file_path)
 
 # print(audit.completeness())
 # print(audit.uniqueness())
-print(audit.plausibility())
+# print(audit.plausibility())
+print(audit.outliers())
