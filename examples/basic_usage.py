@@ -12,4 +12,5 @@ audit = DataAudit(file_path)
 # print(audit.score())
 # print(audit.profile())
 
-print(audit.save_report(format="json"))
+# print(audit.completeness)
+# print(audit.save_report(path="reports"))

@@ -1,17 +1,18 @@
+from functools import cached_property
 import pandas as pd
 from pathlib import Path
-from data_audit.checks.completeness import completeness
-from data_audit.checks.uniqueness import uniqueness
-from data_audit.checks.plausibility import plausibility
-from data_audit.checks.outliers import outliers
-from data_audit.checks.profile import profile
+
+from data_audit.checks.completeness import completeness as check_completeness
+from data_audit.checks.uniqueness import uniqueness as check_uniqueness
+from data_audit.checks.plausibility import plausibility as check_plausibility
+from data_audit.checks.outliers import outliers as check_outliers
+from data_audit.checks.profile import profile as check_profile
 from data_audit.reports.score_calculator import calculate_score
 from data_audit.reports.report_builder import build_report, save_report
 
 class DataAudit:
     def __init__(self, input_data):
         self.df = self._resolve_input(input_data)
-        self.results = {}
 
         
     def _resolve_input(self, input_data):
@@ -37,60 +38,49 @@ class DataAudit:
         raise ValueError(f"Unsupported input type: {type(input_data)}")
     
     
+    @cached_property
     def completeness(self):
-        result = completeness(self.df)
-        self.results["completeness"] = result
-        return result
-    
+        return check_completeness(self.df)
+
+    @cached_property
     def uniqueness(self):
-        result = uniqueness(self.df)
-        self.results["uniqueness"] = result
-        return result
-    
-    
+        return check_uniqueness(self.df)
+
+    @cached_property
     def plausibility(self):
-        result = plausibility(self.df)
-        self.results["plausibility"] = result
-        return result
-    
-    
+        return check_plausibility(self.df)
+
+    @cached_property
     def outliers(self):
-        result = outliers(self.df)
-        self.results["outliers"] = result
-        return result
-    
-    
-    def score(self):
-        if "score" not in self.results:
-            if "completeness" not in self.results:
-                self.completeness()
-            if "uniqueness" not in self.results:
-                self.uniqueness()
-            if "plausibility" not in self.results:
-                self.plausibility()
-            if "outliers" not in self.results:
-                self.outliers()
+        return check_outliers(self.df)
 
-            self.results["score"] = calculate_score(self.results)
-
-        return self.results["score"]
-    
-    
+    @cached_property
     def profile(self):
-        result = profile(self.df)
-        self.results["profile"] = result
-        return result
-    
+        return check_profile(self.df)
+
+    @cached_property
+    def score(self):
+        metrics_payload = {
+            "completeness": self.completeness,
+            "uniqueness": self.uniqueness,
+            "plausibility": self.plausibility,
+            "outliers": self.outliers,
+        }
+        return calculate_score(metrics_payload)
+
+    @property
+    def results(self):
+        return {
+            "profile": self.profile,
+            "completeness": self.completeness,
+            "uniqueness": self.uniqueness,
+            "plausibility": self.plausibility,
+            "outliers": self.outliers,
+            "score": self.score,
+        }
 
     def build_report(self, format="json"):
-        if "profile" not in self.results:
-            self.profile()
-            
-        if "score" not in self.results:
-            self.score()
-
         return build_report(self.results, format=format)
-
 
     def save_report(self, path="reports", format="json"):
         report = self.build_report(format=format)
