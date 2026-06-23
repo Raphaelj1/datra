@@ -1,0 +1,51 @@
+PatientID,FullName,Age,Gender,BloodType,Condition,VisitDate,Doctor,Hospital,PaymentStatus
+P001,Amina Yusuf,34,Female,O+,Malaria,2026-06-01,Dr. Okoro,City General Hospital,Paid
+P002,John Okafor,,Male,A+,Hypertension,2026-06-03,Dr. Bello,,Pending
+P003,Fatima Abdullahi,28,,B+,Typhoid,2026-06-04,Dr. Musa,City General Hospital,Paid
+P004,David Johnson,52,Male,O-,,2026-06-05,Dr. Okoro,Central Clinic,
+P005,Grace Nnamdi,19,Female,A-,Malaria,,Dr. Bello,Hope Medical Centre,Paid
+P006,Ibrahim Sani,60,Male,AB+,Arthritis,2026-06-07,,General Hospital Abuja,Paid
+P007,Chinedu Eze,41,Male,O+,Ulcer,2026-06-08,Dr. Okoro,,Pending
+P008,Aisha Bello,23,Female,,Typhoid,2026-06-09,Dr. Musa,Central Clinic,Paid
+P009,Mary Adams,,Female,A+,Asthma,2026-06-10,Dr. Bello,Hope Medical Centre,
+P010,Usman Aliyu,48,Male,O+,Hypertension,2026-06-11,Dr. Okoro,General Hospital Abuja,Pending
+P011,Nkechi Obi,31,Female,B+,Malaria,2026-06-12,Dr. Musa,City General Hospital,Paid
+P012,Samuel Peters,27,Male,A-,,2026-06-13,,Central Clinic,Pending
+P013,Hauwa Ibrahim,55,Female,O+,Diabetes,2026-06-14,Dr. Okoro,,Paid
+P014,Tunde Adegoke,,Male,AB-,Migraine,2026-06-15,Dr. Musa,City General Hospital,Paid
+P015,Zainab Mohammed,22,Female,B+,Malaria,2026-06-16,Dr. Bello,Central Clinic,
+P016,Emeka Uche,46,Male,O-,Hypertension,,Dr. Okoro,General Hospital Abuja,Paid
+P017,Halima Sulaiman,29,Female,A+,Typhoid,2026-06-18,Dr. Musa,Hope Medical Centre,Paid
+P018,,33,Male,B-,Asthma,2026-06-19,Dr. Bello,City General Hospital,Pending
+P019,Joy Chukwu,26,Female,O+,Malaria,2026-06-20,,Central Clinic,Paid
+P020,Ahmed Garba,50,Male,A+,Diabetes,2026-06-21,Dr. Musa,General Hospital Abuja,
+P021,Peter Obi,44,Male,O+,Hypertension,2026-06-22,Dr. Okoro,City General Hospital,Paid
+P022,Amaka Nwosu,38,Female,B+,Malaria,,Dr. Bello,,Pending
+P023,Kelvin Mark,29,Male,A-,Asthma,2026-06-23,Dr. Musa,Central Clinic,Paid
+P024,Aisha Yusuf,21,Female,O-,Typhoid,2026-06-24,,Hope Medical Centre,Paid
+P025,Samuel John,36,Male,,Diabetes,2026-06-25,Dr. Okoro,General Hospital Abuja,Pending
+P026,,40,Female,A+,Hypertension,2026-06-26,Dr. Bello,City General Hospital,Paid
+P027,Daniel Smith,31,Male,O+,Malaria,2026-06-27,Dr. Musa,Central Clinic,
+P028,Grace Udo,25,Female,B+,Typhoid,2026-06-28,Dr. Okoro,Hope Medical Centre,Paid
+P029,Ifeanyi Okeke,47,Male,A-,Diabetes,,Dr. Bello,City General Hospital,Pending
+P030,Hassan Ali,53,Male,O+,Hypertension,2026-06-30,Dr. Musa,General Hospital Abuja,Paid
+P031,Nora James,30,Female,A+,Asthma,2026-07-01,,Central Clinic,Paid
+P032,Chika Eze,27,Female,B+,Malaria,2026-07-02,Dr. Okoro,,Pending
+P033,Victor Adams,,Male,O-,Typhoid,2026-07-03,Dr. Bello,Hope Medical Centre,Paid
+P034,Abdul Karim,45,Male,A+,Diabetes,2026-07-04,Dr. Musa,City General Hospital,
+P035,Rita Paul,33,Female,O+,Migraine,2026-07-05,Dr. Okoro,Central Clinic,Paid
+P036,John Michael,28,Male,B-,Asthma,2026-07-06,Dr. Bello,Hope Medical Centre,
+P037,Aisha Musa,24,Female,A+,Malaria,2026-07-07,,City General Hospital,Paid
+P038,Emmanuel Kalu,39,Male,O+,Hypertension,2026-07-08,Dr. Musa,,Pending
+P039,Fatima Bello,32,Female,B+,Typhoid,2026-07-09,Dr. Okoro,Central Clinic,Paid
+P040,Mark Spencer,41,Male,A-,Diabetes,2026-07-10,Dr. Bello,General Hospital Abuja,
+P041,Ngozi Okafor,29,Female,O+,Malaria,,Dr. Musa,City General Hospital,Paid
+P042,Ibrahim Yusuf,58,Male,AB+,Arthritis,2026-07-12,Dr. Okoro,Hope Medical Centre,Pending
+P043,Linda George,26,Female,A+,Asthma,2026-07-13,,Central Clinic,Paid
+P044,Peter James,34,Male,O-,Hypertension,2026-07-14,Dr. Bello,City General Hospital,
+P045,Zainab Sani,23,Female,B+,Typhoid,2026-07-15,Dr. Musa,,Paid
+P046,Chinedu Uche,,Male,O+,Malaria,2026-07-16,Dr. Okoro,General Hospital Abuja,Pending
+P047,Adeola Ogun,37,Female,A-,Diabetes,2026-07-17,Dr. Bello,Hope Medical Centre,Paid
+P048,Michael Ojo,42,Male,B+,Hypertension,2026-07-18,,City General Hospital,
+P049,Rachel Brown,31,Female,O+,Asthma,2026-07-19,Dr. Musa,Central Clinic,Paid
+P050,Ahmed Bello,50,Male,A+,Diabetes,2026-07-20,Dr. Okoro,General Hospital Abuja,Pending
