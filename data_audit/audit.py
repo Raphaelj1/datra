@@ -1,6 +1,7 @@
 import pandas as pd
 from pathlib import Path
 from data_audit.checks.completeness import completeness
+from data_audit.checks.uniqueness import uniqueness
 
 class DataAudit:
     def __init__(self, input_data):
@@ -30,7 +31,13 @@ class DataAudit:
 
         raise ValueError(f"Unsupported input type: {type(input_data)}")
     
+    
     def completeness(self):
         result = completeness(self.df)
         self.results["completeness"] = result
+        return result
+    
+    def uniqueness(self):
+        result = uniqueness(self.df)
+        self.results["uniqueness"] = result
         return result
