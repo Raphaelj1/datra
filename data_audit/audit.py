@@ -60,20 +60,20 @@ class DataAudit:
         return result
     
     
-    def run_all(self):
-        self.profile()
-        self.completeness()
-        self.uniqueness()
-        self.plausibility()
-        self.outliers()
-        return self.results
-    
-    
     def score(self):
-        results = self.run_all()
-        score = calculate_score(results)
-        self.results["score"] = score
-        return score
+        if "score" not in self.results:
+            if "completeness" not in self.results:
+                self.completeness()
+            if "uniqueness" not in self.results:
+                self.uniqueness()
+            if "plausibility" not in self.results:
+                self.plausibility()
+            if "outliers" not in self.results:
+                self.outliers()
+
+            self.results["score"] = calculate_score(self.results)
+
+        return self.results["score"]
     
     
     def profile(self):
@@ -83,10 +83,15 @@ class DataAudit:
     
 
     def build_report(self, format="json"):
-        self.score()
+        if "profile" not in self.results:
+            self.profile()
+            
+        if "score" not in self.results:
+            self.score()
+
         return build_report(self.results, format=format)
-    
+
+
     def save_report(self, path="reports", format="json"):
-        self.score()
-        report = build_report(self.results, format="json")
+        report = self.build_report(format=format)
         return save_report(report, path=path, format=format)
