@@ -5,4 +5,6 @@ file_path = Path(__file__).parent / "patients.csv"
 
 audit = DataAudit(file_path)
 
-print(audit.uniqueness())
+# print(audit.completeness())
+# print(audit.uniqueness())
+print(audit.plausibility())

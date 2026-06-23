@@ -2,6 +2,7 @@ import pandas as pd
 from pathlib import Path
 from data_audit.checks.completeness import completeness
 from data_audit.checks.uniqueness import uniqueness
+from data_audit.checks.plausibility import plausibility
 
 class DataAudit:
     def __init__(self, input_data):
@@ -40,4 +41,10 @@ class DataAudit:
     def uniqueness(self):
         result = uniqueness(self.df)
         self.results["uniqueness"] = result
+        return result
+    
+    
+    def plausibility(self):
+        result = plausibility(self.df)
+        self.results["plausibility"] = result
         return result
