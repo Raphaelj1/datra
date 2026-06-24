@@ -2,13 +2,13 @@ from functools import cached_property
 import pandas as pd
 from pathlib import Path
 
-from data_audit.checks.completeness import completeness as check_completeness
-from data_audit.checks.uniqueness import uniqueness as check_uniqueness
-from data_audit.checks.plausibility import plausibility as check_plausibility
-from data_audit.checks.outliers import outliers as check_outliers
-from data_audit.checks.profile import profile as check_profile
-from data_audit.reports.score_calculator import calculate_score
-from data_audit.reports.report_builder import build_report, save_report
+from datra.checks.completeness import completeness as check_completeness
+from datra.checks.uniqueness import uniqueness as check_uniqueness
+from datra.checks.plausibility import plausibility as check_plausibility
+from datra.checks.outliers import outliers as check_outliers
+from datra.checks.profile import profile as check_profile
+from datra.reports.score_calculator import calculate_score
+from datra.reports.report_builder import build_report, save_report
 
 class DataAudit:
     def __init__(self, input_data):
