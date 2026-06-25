@@ -15,6 +15,67 @@ def _record_check(summary, column_result, check_name, passed, **details):
         summary["rules_failed"] += 1
         column_result["passed"] = False
         
+        
+def _check_minimum(df, column, minimum, summary, column_result):
+    violations = int((df[column] < minimum).sum())
+
+    passed = violations == 0
+
+    _record_check(
+        summary,
+        column_result,
+        "minimum",
+        passed,
+        expected=minimum,
+        violations=violations,
+    )
+        
+
+def _check_maximum(df, column, maximum, summary, column_result):
+    violations = int((df[column] > maximum).sum())
+
+    passed = violations == 0
+
+    _record_check(
+        summary,
+        column_result,
+        "maximum",
+        passed,
+        expected=maximum,
+        violations=violations,
+    )
+
+
+def _check_allowed(df, column, allowed, summary, column_result):
+    violations = int(
+        (~df[column].isin(allowed)).sum()
+    )
+
+    passed = violations == 0
+
+    _record_check(
+        summary,
+        column_result,
+        "allowed",
+        passed,
+        expected=allowed,
+        violations=violations,
+    )
+
+
+def _check_unique(df, column, summary, column_result):
+    violations = int(df[column].duplicated().sum())
+
+    passed = violations == 0
+
+    _record_check(
+        summary,
+        column_result,
+        "unique",
+        passed,
+        violations=violations,
+    )
+
 
 def validate(df: pd.DataFrame, rules: dict):
     summary = {
@@ -37,73 +98,43 @@ def validate(df: pd.DataFrame, rules: dict):
             "passed": True,
             "checks": {}
         }
-
-        results[column] = column_result
         
         if "min" in column_rules:
-            minimum = column_rules["min"]
-
-            violations = int((df[column] < minimum).sum())
-
-            passed = violations == 0
-
-            _record_check(
+            _check_minimum(
+                df,
+                column,
+                column_rules["min"],
                 summary,
                 column_result,
-                "minimum",
-                passed,
-                expected=minimum,
-                violations=violations,
             )
-        
+
         if "max" in column_rules:
-            maximum = column_rules["max"]
-
-            violations = int((df[column] > maximum).sum())
-
-            passed = violations == 0
-
-            _record_check(
+            _check_maximum(
+                df,
+                column,
+                column_rules["max"],
                 summary,
                 column_result,
-                "minimum",
-                passed,
-                expected=minimum,
-                violations=violations,
             )
-                
-                
+
         if "allowed" in column_rules:
-            allowed = column_rules["allowed"]
-
-            violations = int(
-                (~df[column].isin(allowed)).sum()
-            )
-
-            passed = violations == 0
-
-            _record_check(
+            _check_allowed(
+                df,
+                column,
+                column_rules["allowed"],
                 summary,
                 column_result,
-                "minimum",
-                passed,
-                expected=minimum,
-                violations=violations,
             )
-                
+
         if column_rules.get("unique"):
-            violations = int(df[column].duplicated().sum())
-
-            passed = violations == 0
-
-            _record_check(
+            _check_unique(
+                df,
+                column,
                 summary,
                 column_result,
-                "minimum",
-                passed,
-                expected=minimum,
-                violations=violations,
             )
+
+        results[column] = column_result
                 
         if summary["rules_checked"]:
             summary["validation_score"] = round(
