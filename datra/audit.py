@@ -2,9 +2,9 @@ from functools import cached_property
 import pandas as pd
 from pathlib import Path
 
+from datra.checks.validate import validate as validate_df
 from datra.checks.completeness import completeness as check_completeness
 from datra.checks.uniqueness import uniqueness as check_uniqueness
-from datra.checks.plausibility import plausibility as check_plausibility
 from datra.checks.outliers import outliers as check_outliers
 from datra.checks.profile import profile as check_profile
 from datra.reports.score_calculator import calculate_score
@@ -47,10 +47,6 @@ class DataAudit:
         return check_uniqueness(self.df)
 
     @cached_property
-    def plausibility(self):
-        return check_plausibility(self.df)
-
-    @cached_property
     def outliers(self):
         return check_outliers(self.df)
 
@@ -73,10 +69,12 @@ class DataAudit:
             "profile": self.profile,
             "completeness": self.completeness,
             "uniqueness": self.uniqueness,
-            "plausibility": self.plausibility,
             "outliers": self.outliers,
             "score": self.score,
         }
+
+    def validate(self, rules: dict):
+        return validate_df(self.df, rules)
 
     def build_report(self, format="json"):
         return build_report(self.results, format=format)
