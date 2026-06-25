@@ -10,7 +10,7 @@ audit = DataAudit(file_path)
 # print(audit.uniqueness)
 # print(audit.plausibility)
 # print(audit.outliers)
-print(audit.score)
+# print(audit.score)
 # print(audit.profile)
 
 # audit.save_report(path="reports")
@@ -24,3 +24,12 @@ print(audit.score)
 
 # print(cleaned_df)
 # print(report)
+
+rules = {
+    "Age": {
+        "min": 0,
+        "max": 130
+    },
+}
+
+print(audit.validate(rules))
