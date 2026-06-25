@@ -63,7 +63,6 @@ class DataAudit:
         metrics_payload = {
             "completeness": self.completeness,
             "uniqueness": self.uniqueness,
-            "plausibility": self.plausibility,
             "outliers": self.outliers,
         }
         return calculate_score(metrics_payload)

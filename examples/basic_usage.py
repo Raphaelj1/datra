@@ -10,8 +10,8 @@ audit = DataAudit(file_path)
 # print(audit.uniqueness)
 # print(audit.plausibility)
 # print(audit.outliers)
-# print(audit.score)
-print(audit.profile)
+print(audit.score)
+# print(audit.profile)
 
 # audit.save_report(path="reports")
 
