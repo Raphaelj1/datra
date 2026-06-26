@@ -1,42 +1,47 @@
 import pandas as pd
 
 
-def _fill_numeric(df, strategy):
+def _fill_numeric(df: pd.DataFrame, strategy):
     numeric_columns = df.select_dtypes(include="number").columns
 
-    for column in numeric_columns:
+    if numeric_columns.empty:
+        return df
+    
+    if strategy == "zero":
+        value = 0
 
-        if strategy == "mean":
-            value = df[column].mean()
+    elif strategy in ("mean", "median"):
+        value = df[numeric_columns].agg(strategy)
 
-        elif strategy == "median":
-            value = df[column].median()
-
-        elif strategy == "mode":
-            value = df[column].mode().iloc[0]
-
-        else:
-            continue
-
-        df[column] = df[column].fillna(value)
+    elif strategy == "mode":
+        mode_df = df[numeric_columns].mode()
+        value = mode_df.iloc[0] if not mode_df.empty else pd.Series(dtype="float64")
 
 
+    else: 
+        raise ValueError(f"Unknown numeric strategy '{strategy}'. Use 'mean', 'median', 'mode', or 'zero'.")
 
-def _fill_categorical(df, strategy):
+    df[numeric_columns] = df[numeric_columns].fillna(value)
+
+
+
+def _fill_categorical(df: pd.DataFrame, strategy):
     categorical_columns = df.select_dtypes(exclude="number").columns
 
-    for column in categorical_columns:
+    if categorical_columns.empty:
+        return df
+    
+    if strategy == "mode":
+        mode_df = df[categorical_columns].mode()
+        value = mode_df.iloc[0] if not mode_df.empty else pd.Series(dtype="object")
 
-        if strategy == "mode":
-            value = df[column].mode().iloc[0]
+    else: 
+        raise ValueError(f"Unknown categorical strategy '{strategy}'. Use 'mode'.")
 
-        else:
-            continue
-
-        df[column] = df[column].fillna(value)
+    df[categorical_columns] = df[categorical_columns].fillna(value)
 
 
-def fill_missing(df: pd.DataFrame, rules: dict):
+def fill_missing(df: pd.DataFrame, rules: dict) -> pd.DataFrame:
     cleaned = df.copy()
 
     numeric_strategy = rules.get("numeric")

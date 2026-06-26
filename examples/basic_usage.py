@@ -33,6 +33,6 @@ audit = DataAudit(file_path)
 
 df = pd.read_csv(file_path)
 
-clean_df = clean(df, fill_numeric="median", fill_categorical="mode", standardize_columns=True)
+clean_df = clean(df)
 
 clean_df.to_csv("examples/output.csv", index=False)
