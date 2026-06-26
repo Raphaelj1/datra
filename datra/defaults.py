@@ -6,7 +6,7 @@ DEFAULT_CLEANING_RULES = {
         "numeric": None,
         "categorical": None,
     },
-    "strings": {
-        "trim": False,
+    "columns": {
+        "standardize": True,
     },
 }

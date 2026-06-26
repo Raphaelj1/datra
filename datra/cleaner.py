@@ -3,6 +3,7 @@ from copy import deepcopy
 from datra.defaults import DEFAULT_CLEANING_RULES
 from datra.cleaning.duplicates import remove_duplicates
 from datra.cleaning.missing import fill_missing
+from datra.cleaning.columns import standardize_column_names
 
 
 def clean(df, rules=None, **kwargs):
@@ -26,6 +27,11 @@ def clean(df, rules=None, **kwargs):
     if any(value is not None for value in missing.values()):
         cleaned = fill_missing(cleaned, missing)
 
+    column_rules = rules.get("columns", {})
+
+    if column_rules.get("standardize"):
+        cleaned = standardize_column_names(cleaned)
+
     return cleaned
 
 
@@ -40,5 +46,8 @@ def _kwargs_to_rules(kwargs):
 
     if "fill_categorical" in kwargs:
         rules["missing"]["categorical"] = kwargs["fill_categorical"]
+
+    if "standardize_columns" in kwargs:
+        rules["columns"]["standardize"] = kwargs["standardize_columns"]
 
     return rules

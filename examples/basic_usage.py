@@ -25,14 +25,14 @@ audit = DataAudit(file_path)
 # print(cleaned_df)
 # print(report)
 
-rules = {
-  "duplicates": {
-    "drop": False
-  }
-}
+# rules = {
+#   "duplicates": {
+#     "drop": False
+#   }
+# }
 
 df = pd.read_csv(file_path)
 
-print(len(df))
+clean_df = clean(df, fill_numeric="median", fill_categorical="mode", standardize_columns=True)
 
-print(len(clean(df, drop_duplicates=True)))
+clean_df.to_csv("examples/output.csv", index=False)
