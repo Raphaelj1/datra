@@ -9,7 +9,7 @@ from datra.checks.completeness import completeness as check_completeness
 from datra.checks.uniqueness import uniqueness as check_uniqueness
 from datra.checks.outliers import outliers as check_outliers
 from datra.checks.profile import profile as check_profile
-from datra.reports.score_calculator import calculate_score
+from datra.scoring.score import calculate_score
 from datra.reports.report_builder import build_report, save_report
 
 
