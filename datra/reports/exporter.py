@@ -7,7 +7,7 @@ from .templates import report_to_html
 
 def save_report(
     report,
-    output="output",
+    output="outputs",
     format="json",
 ):
     output = Path(output)

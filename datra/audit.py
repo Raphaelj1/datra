@@ -55,6 +55,6 @@ class DataAudit:
     def build_report(self):
         return build_report(self.results)
 
-    def save_report(self, path="reports", format="json"):
+    def save_report(self, path="outputs", format="json"):
         report = self.build_report()
         return save_report(report, output=path, format=format)
