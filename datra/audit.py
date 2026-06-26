@@ -10,7 +10,7 @@ from datra.scoring.score import calculate_score
 from datra.reports import build_report, save_report
 
 
-class DataAudit:
+class Audit:
     def __init__(self, input_data):
         self.df = load(input_data)
     

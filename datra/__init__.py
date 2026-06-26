@@ -1,4 +1,4 @@
-from .audit import DataAudit
+from .audit import Audit
 from .cleaner import clean
 
-__all__ = ["DataAudit", "clean"]
+__all__ = ["Audit", "clean"]
