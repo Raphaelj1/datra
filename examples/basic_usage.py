@@ -26,10 +26,13 @@ audit = DataAudit(file_path)
 # print(report)
 
 rules = {
-    "Age": {
-        "min": 0,
-        "max": 130
-    },
+  "duplicates": {
+    "drop": False
+  }
 }
 
-print(audit.validate(rules))
+df = pd.read_csv(file_path)
+
+print(len(df))
+
+print(len(clean(df, drop_duplicates=True)))
