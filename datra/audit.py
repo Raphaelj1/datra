@@ -12,6 +12,7 @@ from datra.checks.profile import profile as check_profile
 from datra.reports.score_calculator import calculate_score
 from datra.reports.report_builder import build_report, save_report
 
+
 class DataAudit:
     def __init__(self, input_data):
         self.df = load(input_data)
