@@ -13,7 +13,7 @@ audit = DataAudit(file_path)
 # print(audit.score)
 # print(audit.profile)
 
-# audit.save_report(path="reports")
+# audit.save_report()
 
 # df = pd.DataFrame({
 #     "name": ["A", "A"],
@@ -33,6 +33,6 @@ audit = DataAudit(file_path)
 
 # df = pd.read_csv(file_path)
 
-clean_df = clean(file_path, drop_duplicates=False, output='examples/test.csv')
+# clean_df = clean(file_path, drop_duplicates=False, output='examples/test.csv')
 
 # clean_df.to_csv("examples/output.csv", index=False)

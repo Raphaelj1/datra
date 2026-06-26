@@ -1,16 +1,13 @@
 from functools import cached_property
-import pandas as pd
-from pathlib import Path
 
 from datra.io import load
-
 from datra.checks.validate import validate as validate_df
 from datra.checks.completeness import completeness as check_completeness
 from datra.checks.uniqueness import uniqueness as check_uniqueness
 from datra.checks.outliers import outliers as check_outliers
 from datra.checks.profile import profile as check_profile
 from datra.scoring.score import calculate_score
-from datra.reports.report_builder import build_report, save_report
+from datra.reports import build_report, save_report
 
 
 class DataAudit:
@@ -55,9 +52,9 @@ class DataAudit:
     def validate(self, rules: dict):
         return validate_df(self.df, rules)
 
-    def build_report(self, format="json"):
-        return build_report(self.results, format=format)
+    def build_report(self):
+        return build_report(self.results)
 
     def save_report(self, path="reports", format="json"):
-        report = self.build_report(format=format)
-        return save_report(report, path=path, format=format)
+        report = self.build_report()
+        return save_report(report, output=path, format=format)
