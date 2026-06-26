@@ -11,7 +11,7 @@ audit = DataAudit(file_path)
 # print(audit.plausibility)
 # print(audit.outliers)
 # print(audit.score)
-# print(audit.profile)
+print(audit.profile)
 
 # audit.save_report(path="reports")
 
@@ -31,8 +31,8 @@ audit = DataAudit(file_path)
 #   }
 # }
 
-df = pd.read_csv(file_path)
+# df = pd.read_csv(file_path)
 
-clean_df = clean(df)
+# clean_df = clean(df)
 
-clean_df.to_csv("examples/output.csv", index=False)
+# clean_df.to_csv("examples/output.csv", index=False)
