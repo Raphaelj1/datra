@@ -1,9 +1,55 @@
 [build-system]
-requires = ["setuptools"]
+requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "datra"
 version = "0.1.0"
-description = "Data quality auditing tool"
-dependencies = ["pandas"]
+description = "A lightweight Python library for cleaning, auditing, and validating tabular data."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+
+authors = [
+    { name = "Raphael", email = "raphaeljames897@gmail.com" }
+]
+
+keywords = [
+    "data-cleaning",
+    "data-quality",
+    "validation",
+    "pandas",
+    "data-analysis",
+]
+
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+    "Topic :: Software Development :: Libraries",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.13",
+]
+
+dependencies = [
+    "pandas>=2.0,<3.0",
+    "openpyxl>=3.1"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8",
+    "build",
+    "twine",
+]
+
+[project.urls]
+Homepage = "https://github.com/Raphaelj1/datra"
+Repository = "https://github.com/Raphaelj1/datra"
+Issues = "https://github.com/Raphaelj1/datra/issues"
+
+[tool.setuptools.packages.find]
+include = ["datra*"]
