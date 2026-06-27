@@ -9,6 +9,7 @@ def uniqueness(df: pd.DataFrame):
 
     result = {
         "total_rows": total_rows,
+        "unique_rows": int(len(df) - duplicate_rows),
         "duplicate_rows": int(duplicate_rows),
         "duplicate_ratio": float(round(duplicate_rows / total_rows, 4) if total_rows else 0),
         # "duplicate_sample": df[dup_mask].head(5).to_dict(orient="records")

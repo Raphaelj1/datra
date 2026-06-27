@@ -11,8 +11,8 @@ def completeness(df: pd.DataFrame):
         filled = total_rows - missing
 
         result[col] = {
-            "missing": int(missing),
-            "filled": int(filled),
+            "missing_values": int(missing),
+            "filled_values": int(filled),
             "completeness_ratio": float(round(filled / total_rows, 4))
         }
 
